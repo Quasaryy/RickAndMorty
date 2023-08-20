@@ -106,15 +106,11 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
     
     // MARK: - TableView
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 2 + character.episode.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 {
-            return character.name.count
-        } else {
-            return 1
-        }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -139,9 +135,17 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
             return setupHederForSection(name: "Info")
         } else if section == 1 {
             return setupHederForSection(name: "Origin")
-        } else {
+        } else if section == 2  {
             return setupHederForSection(name: "Episodes")
         }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if (0...2) ~= section {
+            return 50
+        }
+        return 0.1
     }
 
     
@@ -164,7 +168,7 @@ extension CharacterDetailsViewController {
         characterName.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         characterName.topAnchor.constraint(equalTo: characterNameImage.bottomAnchor, constant: 30).isActive = true
         characterName.heightAnchor.constraint(equalToConstant: 22).isActive = true
-        characterName.widthAnchor.constraint(equalToConstant: 140).isActive = true
+        characterName.widthAnchor.constraint(equalToConstant: 240).isActive = true
         
         // Constarints for character alive
         characterAlive.translatesAutoresizingMaskIntoConstraints = false
