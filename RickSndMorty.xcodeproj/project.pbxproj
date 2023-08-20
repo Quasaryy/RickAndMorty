@@ -12,8 +12,13 @@
 		D28E0DEC2A90C2D50067D952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D28E0DEB2A90C2D50067D952 /* Assets.xcassets */; };
 		D28E0DEF2A90C2D50067D952 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D28E0DED2A90C2D50067D952 /* LaunchScreen.storyboard */; };
 		D2BBCDB22A90D6030045D3B8 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBCDB12A90D6030045D3B8 /* CollectionViewController.swift */; };
-		D2BBCDB42A90D6C30045D3B8 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBCDB32A90D6C30045D3B8 /* CollectionViewCell.swift */; };
+		D2BBCDB42A90D6C30045D3B8 /* CharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBCDB32A90D6C30045D3B8 /* CharacterCollectionViewCell.swift */; };
 		D2BBCDB62A90E8460045D3B8 /* CharctersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBCDB52A90E8460045D3B8 /* CharctersModel.swift */; };
+		D2BBCDBD2A9146B60045D3B8 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2BBCDBB2A9146B60045D3B8 /* Gilroy-ExtraBold.otf */; };
+		D2BBCDBE2A9146B60045D3B8 /* Gilroy-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2BBCDBC2A9146B60045D3B8 /* Gilroy-Light.otf */; };
+		D2BBCDC12A91477A0045D3B8 /* Gilroy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2BBCDC02A91477A0045D3B8 /* Gilroy-Regular.ttf */; };
+		D2BBCDC32A91478C0045D3B8 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2BBCDC22A91478C0045D3B8 /* Gilroy-Medium.ttf */; };
+		D2BBCDC52A9148650045D3B8 /* Gilroy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2BBCDC42A9148650045D3B8 /* Gilroy-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +29,13 @@
 		D28E0DEE2A90C2D50067D952 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D28E0DF02A90C2D50067D952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2BBCDB12A90D6030045D3B8 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
-		D2BBCDB32A90D6C30045D3B8 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		D2BBCDB32A90D6C30045D3B8 /* CharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCell.swift; sourceTree = "<group>"; };
 		D2BBCDB52A90E8460045D3B8 /* CharctersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharctersModel.swift; sourceTree = "<group>"; };
+		D2BBCDBB2A9146B60045D3B8 /* Gilroy-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ExtraBold.otf"; sourceTree = "<group>"; };
+		D2BBCDBC2A9146B60045D3B8 /* Gilroy-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Light.otf"; sourceTree = "<group>"; };
+		D2BBCDC02A91477A0045D3B8 /* Gilroy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Regular.ttf"; sourceTree = "<group>"; };
+		D2BBCDC22A91478C0045D3B8 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
+		D2BBCDC42A9148650045D3B8 /* Gilroy-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,7 @@
 			children = (
 				D28E0DE22A90C2D40067D952 /* AppDelegate.swift */,
 				D28E0DE42A90C2D40067D952 /* SceneDelegate.swift */,
+				D2BBCDBF2A9146C10045D3B8 /* Fonts */,
 				D2BBCDB82A90E8620045D3B8 /* ViewControllers */,
 				D2BBCDB72A90E84C0045D3B8 /* Models */,
 				D28E0DEB2A90C2D50067D952 /* Assets.xcassets */,
@@ -81,9 +92,21 @@
 			isa = PBXGroup;
 			children = (
 				D2BBCDB12A90D6030045D3B8 /* CollectionViewController.swift */,
-				D2BBCDB32A90D6C30045D3B8 /* CollectionViewCell.swift */,
+				D2BBCDB32A90D6C30045D3B8 /* CharacterCollectionViewCell.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D2BBCDBF2A9146C10045D3B8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D2BBCDBB2A9146B60045D3B8 /* Gilroy-ExtraBold.otf */,
+				D2BBCDC02A91477A0045D3B8 /* Gilroy-Regular.ttf */,
+				D2BBCDC22A91478C0045D3B8 /* Gilroy-Medium.ttf */,
+				D2BBCDC42A9148650045D3B8 /* Gilroy-Bold.ttf */,
+				D2BBCDBC2A9146B60045D3B8 /* Gilroy-Light.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,8 +167,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2BBCDC12A91477A0045D3B8 /* Gilroy-Regular.ttf in Resources */,
+				D2BBCDC32A91478C0045D3B8 /* Gilroy-Medium.ttf in Resources */,
 				D28E0DEF2A90C2D50067D952 /* LaunchScreen.storyboard in Resources */,
+				D2BBCDC52A9148650045D3B8 /* Gilroy-Bold.ttf in Resources */,
 				D28E0DEC2A90C2D50067D952 /* Assets.xcassets in Resources */,
+				D2BBCDBE2A9146B60045D3B8 /* Gilroy-Light.otf in Resources */,
+				D2BBCDBD2A9146B60045D3B8 /* Gilroy-ExtraBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,7 +187,7 @@
 				D2BBCDB62A90E8460045D3B8 /* CharctersModel.swift in Sources */,
 				D2BBCDB22A90D6030045D3B8 /* CollectionViewController.swift in Sources */,
 				D28E0DE32A90C2D40067D952 /* AppDelegate.swift in Sources */,
-				D2BBCDB42A90D6C30045D3B8 /* CollectionViewCell.swift in Sources */,
+				D2BBCDB42A90D6C30045D3B8 /* CharacterCollectionViewCell.swift in Sources */,
 				D28E0DE52A90C2D40067D952 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +256,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -282,6 +311,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -303,8 +333,10 @@
 				INFOPLIST_FILE = RickSndMorty/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -333,8 +365,10 @@
 				INFOPLIST_FILE = RickSndMorty/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
