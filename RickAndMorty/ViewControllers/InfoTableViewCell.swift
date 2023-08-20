@@ -9,7 +9,9 @@ import UIKit
 
 class InfoTableViewCell: UITableViewCell {
     
-    // Левые лейблы
+    // MARK: - Properties
+    
+    // MARK: Right lables
     let leftLabel1: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +36,7 @@ class InfoTableViewCell: UITableViewCell {
         return label
     }()
     
-    // Правые лейблы
+    // MARK: Right lables
     let rightLabel1: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -62,24 +64,25 @@ class InfoTableViewCell: UITableViewCell {
         return label
     }()
     
+    // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        // Добавьте левые лейблы в ячейку
+        // MARK: - Add left labels to a cell
         let leftStackView = UIStackView(arrangedSubviews: [leftLabel1, leftLabel2, leftLabel3])
         leftStackView.translatesAutoresizingMaskIntoConstraints = false
         leftStackView.axis = .vertical // Изменил на вертикальную ориентацию
         leftStackView.spacing = 20
         contentView.addSubview(leftStackView)
         
-        // Добавьте правые лейблы в ячейку
+        // MARK: - Add right labels to a cell
         let rightStackView = UIStackView(arrangedSubviews: [rightLabel1, rightLabel2, rightLabel3])
         rightStackView.translatesAutoresizingMaskIntoConstraints = false
         rightStackView.axis = .vertical // Изменил на вертикальную ориентацию
         rightStackView.spacing = 20
         contentView.addSubview(rightStackView)
         
-        // Установите констрейнты для стековых представлений
+        // MARK: - Constraints
         NSLayoutConstraint.activate([
             leftStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             leftStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
@@ -91,6 +94,7 @@ class InfoTableViewCell: UITableViewCell {
         ])
     }
     
+    // MARK: Required init
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

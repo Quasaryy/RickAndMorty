@@ -120,6 +120,7 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
             
+            cell.selectionStyle = .none
             cell.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
             cell.leftLabel1.text = "Species:"
             cell.leftLabel2.text = "Type:"
@@ -145,6 +146,18 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
                 return cell
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let cell = tableView.cellForRow(at: indexPath)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                cell?.contentView.backgroundColor = UIColor(red: 53/255, green: 54/255, blue: 54/255, alpha: 1)
+            }) { (_) in
+                UIView.animate(withDuration: 0.2, animations: {
+                    cell?.contentView.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
+                })
+            }
+        }
 
 
     
