@@ -33,6 +33,8 @@ struct Character: Codable {
 struct Origin: Codable {
     let name: String
     let url: String
+    let type: String?
+    
 }
 
 struct Location: Codable {

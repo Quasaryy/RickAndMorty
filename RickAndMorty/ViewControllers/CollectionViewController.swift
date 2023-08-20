@@ -201,7 +201,7 @@ extension CollectionViewController {
         
     }
     
-    // MARK: Loader dection
+    // MARK: Loader section
     private func loader() -> UIAlertController {
         let alert = UIAlertController(title: "Please wait", message: "Loading characters", preferredStyle: .alert)
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 15, width: 50, height: 50))

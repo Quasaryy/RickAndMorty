@@ -11,7 +11,8 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
     
     // MARK: - Propertis
     var character: Character!
-    private let reuseIdentifier = "Cell"
+    private var dataModel = Location2.shared
+    
     
     lazy private var characterNameImage: UIImageView = {
         characterNameImage = UIImageView()
@@ -81,8 +82,10 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
     
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
-        
+        getDataFromRemoteServer()
         tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "infoCell")
+        tableView.register(OriginTableViewCell.self, forCellReuseIdentifier: "originCell")
+        
         view.backgroundColor = .black
         setNeedsStatusBarAppearanceUpdate() // Set the status bar text color to white
         
@@ -98,12 +101,6 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
         }
         
         addConstaraints()
-        
-        for subview in view.subviews {
-            if subview == characterName {
-                print("charcterName был успешно добавлен к иерархии представлений.")
-            }
-        }
     }
     
     // MARK: - TableView
@@ -132,18 +129,29 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
             cell.rightLabel3.text = character.gender
             
             return cell
-        } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
-                
-                cell.leftLabel1.text = "asd"
-                cell.leftLabel2.text = "asd"
-                cell.leftLabel3.text = "asd"
-                
-                cell.rightLabel1.text = "Right Label 1"
-                cell.rightLabel2.text = "Right Label 2"
-                cell.rightLabel3.text = "Right Label 3"
+        } else if indexPath.section == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "originCell", for: indexPath) as! OriginTableViewCell
+            
+            cell.selectionStyle = .none
+            cell.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
+            cell.planetImage.image = UIImage(named: "planet")
+            dataModel.name != "" ? (cell.locationName.text = dataModel.name) : (cell.locationName.text = "Unknow")
+            dataModel.type != "" ? (cell.planetName.text = dataModel.type) : (cell.planetName.text = "Unknow")
+               
                 
                 return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
+            
+            cell.leftLabel1.text = "asd"
+            cell.leftLabel2.text = "asd"
+            cell.leftLabel3.text = "asd"
+            
+            cell.rightLabel1.text = "Right Label 1"
+            cell.rightLabel2.text = "Right Label 2"
+            cell.rightLabel3.text = "Right Label 3"
+            
+            return cell
         }
     }
     
@@ -236,6 +244,86 @@ extension CharacterDetailsViewController {
         ])
         
         return headerView
+    }
+    
+    // MARK: Network section
+    func getDataFromRemoteServer() {
+        guard let url = URL(string: character.origin.url) else { return }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            if let error = error {
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.alert(title: "Something wrong", message: error.localizedDescription)
+                }
+                return
+            }
+            
+            if let response = response {
+                print(response)
+            }
+            
+            guard let remtoteData = data else { return }
+            do {
+                self.dataModel = try JSONDecoder().decode(Location2.self, from: remtoteData)
+                //print(self.dataModel)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    let loader = self.loader()
+                    self.stopLoader(loader: loader)
+                }
+            } catch let error {
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    let loader = self.loader()
+                    self.stopLoader(loader: loader)
+                    self.alert(title: "Remote data decoding error", message: "We are working on fixing the bug, please try again later.")
+                }
+            }
+        }.resume()
+    }
+    
+    // MARK: Alert controller
+    func alert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let buttonOK = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(buttonOK)
+        present(alert, animated: true)
+    }
+    
+    // To load images in async mode
+    func loadImageAsync(from imageURL: URL, completion: @escaping (UIImage?) -> Void) {
+        URLSession.shared.dataTask(with: imageURL) { data, _, error in
+            if let error = error {
+                print("Error image loading: \(error.localizedDescription)")
+                completion(nil)
+                return
+            }
+            
+            if let data = data, let image = UIImage(data: data) {
+                completion(image)
+            } else {
+                completion(nil)
+            }
+        }.resume()
+    }
+    
+    // MARK: Loader section
+    private func loader() -> UIAlertController {
+        let alert = UIAlertController(title: "Please wait", message: "Loading characters", preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 15, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.large
+        loadingIndicator.startAnimating()
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+        return alert
+    }
+    
+    private func stopLoader(loader : UIAlertController) {
+        DispatchQueue.main.async {
+            loader.dismiss(animated: true, completion: nil)
+        }
     }
     
 }
