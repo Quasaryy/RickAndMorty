@@ -35,6 +35,8 @@ class OriginTableViewCell: UITableViewCell {
         locationName.translatesAutoresizingMaskIntoConstraints = false
         locationName.textColor = UIColor.white
         locationName.font = UIFont(name: "Gilroy-SemiBold", size: 17)
+        locationName.numberOfLines = 1
+        locationName.lineBreakMode = .byClipping
         return locationName
     }()
     
