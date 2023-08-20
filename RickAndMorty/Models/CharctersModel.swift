@@ -27,7 +27,7 @@ struct Character: Codable {
     let url: String
     let created: String
     
-    static let shared = Character(id: Int(), name: String(), status: String(), species: String(), type: String(), gender: String(), origin: Origin(name: String(), url: String()), location: Location(name: String(), url: String()), image: String(), episode: [String](), url: String(), created: String())
+    //static let shared = Character(id: Int(), name: String(), status: String(), species: String(), type: String(), gender: String(), origin: Origin(name: String(), url: String()), location: Location(name: String(), url: String()), image: String(), episode: [String](), url: String(), created: String())
 }
 
 struct Origin: Codable {

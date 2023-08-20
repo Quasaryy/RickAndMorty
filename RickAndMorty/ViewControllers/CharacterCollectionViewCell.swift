@@ -10,7 +10,7 @@ import UIKit
 class CharacterCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-    lazy var characterImageView: UIImageView! = {
+    lazy var characterImageView: UIImageView = {
         characterImageView = UIImageView()
         characterImageView.translatesAutoresizingMaskIntoConstraints = false
         characterImageView.contentMode = .scaleAspectFill
@@ -30,13 +30,13 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         charcterName = UILabel()
         charcterName.translatesAutoresizingMaskIntoConstraints = false
         charcterName.textColor = UIColor.white
-        charcterName.font = UIFont(name: "Gilroy-Bold", size: 17)
+        charcterName.font = UIFont(name: "Gilroy-SemiBold", size: 17)
         charcterName.textAlignment = .center
         charcterName.numberOfLines = 1
         charcterName.lineBreakMode = .byTruncatingTail
         contentView.addSubview(charcterName)
         
-        // Setting constraints for an lablel
+        // Setting constraints for a lablel
         charcterName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
         charcterName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
         charcterName.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: 15).isActive = true
@@ -51,7 +51,7 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         // Set corner rounding for a cell
-        self.layer.cornerRadius = 15
+        self.layer.cornerRadius = 16
         self.layer.masksToBounds = true
         
         // Set background for a cell

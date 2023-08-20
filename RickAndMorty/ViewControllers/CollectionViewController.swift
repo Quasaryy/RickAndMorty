@@ -14,6 +14,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     private var dataModel = CharacterResponse.shared
     private let cellsInRow: CGFloat = 2
     private let sectionInsets = UIEdgeInsets(top: 15, left: 20, bottom: 10, right: 20)
+    private var indexPath: IndexPath!
     
     
     
@@ -31,7 +32,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         // Register custom UICollectionViewCell class
         collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
@@ -40,23 +41,25 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         setupNavigationBar()
         
         getDataFromRemoteServer()
+        
     }
     
-    /*
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
+     func showDetailViewController(forCharacter character: Character) {
+
+         let detailsViewController = CharacterDetailsViewController()
+         
+         //Sending character details to CharacterDetailsViewController
+         detailsViewController.character = dataModel.results[indexPath.item]
+         
+         // Perform to CharacterDetailsViewController
+         self.navigationController?.pushViewController(detailsViewController, animated: false)
      }
-     */
     
     // MARK: UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataModel.results.count
@@ -67,7 +70,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CharacterCollectionViewCell
         
         // Configure the cell
-        let character = dataModel.results[indexPath.row]
+        let character = dataModel.results[indexPath.item]
         
         // Loading image (in async mode)
         if let imageURL = URL(string: character.image) {
@@ -107,6 +110,14 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         return sectionInsets.top
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        changeBackButtonTextAndColor()
+        
+        self.indexPath = indexPath
+        let selectedCharacter = dataModel.results[indexPath.item]
+        showDetailViewController(forCharacter: selectedCharacter)
     }
     
 }
@@ -202,10 +213,16 @@ extension CollectionViewController {
         return alert
     }
     
-    func stopLoader(loader : UIAlertController) {
+    private func stopLoader(loader : UIAlertController) {
         DispatchQueue.main.async {
             loader.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    private func changeBackButtonTextAndColor() {
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        backButton.tintColor = .white
+        navigationItem.backBarButtonItem = backButton
     }
     
 }
