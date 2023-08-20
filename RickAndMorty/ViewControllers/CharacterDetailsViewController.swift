@@ -79,8 +79,10 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         
+        tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "infoCell")
         view.backgroundColor = .black
         setNeedsStatusBarAppearanceUpdate() // Set the status bar text color to white
         
@@ -114,21 +116,37 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        var content = cell.defaultContentConfiguration()
-        
-        // Configure content.
-        content.image = UIImage(systemName: "person.crop.circle")
-        content.text = "Favorites"
-        
-        // Customize appearance.
-        content.imageProperties.tintColor = .systemCyan
-        
-        cell.contentConfiguration = content
-        
-        return cell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
+            
+            cell.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
+            cell.leftLabel1.text = "Species:"
+            cell.leftLabel2.text = "Type:"
+            cell.leftLabel3.text = "Gender:"
+            cell.rightLabel1.text = character.species
+            
+            character.type == "" ? (cell.rightLabel2.text = "None") : (cell.rightLabel2.text = character.type)
+            
+            cell.rightLabel3.text = character.gender
+            
+            return cell
+        } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
+                
+                cell.leftLabel1.text = "asd"
+                cell.leftLabel2.text = "asd"
+                cell.leftLabel3.text = "asd"
+                
+                cell.rightLabel1.text = "Right Label 1"
+                cell.rightLabel2.text = "Right Label 2"
+                cell.rightLabel3.text = "Right Label 3"
+                
+                return cell
+        }
     }
+
+
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
