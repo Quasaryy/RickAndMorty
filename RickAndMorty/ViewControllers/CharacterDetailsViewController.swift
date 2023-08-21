@@ -169,9 +169,9 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
                 episodesCell.episodeNumber.text = convertEpisodeString(episodeString)
                 episodesCell.edisodeDate.text = dataModelForEpisodes[episodeIndex].airDate
             } else {
-                episodesCell.episodeName.text = "N/A"
-                episodesCell.episodeNumber.text = "N/A"
-                episodesCell.edisodeDate.text = "N/A"
+                episodesCell.episodeName.text = "Loading..."
+                episodesCell.episodeNumber.text = "Loading..."
+                episodesCell.edisodeDate.text = "Loading..."
             }
             
             return episodesCell
