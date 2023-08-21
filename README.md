@@ -1,5 +1,5 @@
 # RickAndMorty
-Tech stack: Without StoryBoard only code, URLSesson, JSON, MVC, GCD, UICollectionView, UITableView, Custom cells
+Tech stack: Without StoryBoard only code, URLSesson, JSON, MVC, GCD, Figma, UICollectionView, UITableView, Custom cells
 
 ## Launch screen
 ![Иллюстрация к проекту](https://github.com/Quasaryy/RickAndMorty/blob/main/1.png)
