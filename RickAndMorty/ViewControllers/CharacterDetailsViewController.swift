@@ -161,11 +161,18 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
             episodesCell.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
             
             let episodeIndex = indexPath.section - 1
-            let episodeString = dataModelForEpisodes[episodeIndex].episode
             
-            episodesCell.episodeName.text = dataModelForEpisodes[episodeIndex].name
-            episodesCell.episodeNumber.text = convertEpisodeString(episodeString)
-            episodesCell.edisodeDate.text = dataModelForEpisodes[episodeIndex].airDate
+            if episodeIndex >= 0 && episodeIndex < dataModelForEpisodes.count {
+                
+                let episodeString = dataModelForEpisodes[episodeIndex].episode
+                episodesCell.episodeName.text = dataModelForEpisodes[episodeIndex].name
+                episodesCell.episodeNumber.text = convertEpisodeString(episodeString)
+                episodesCell.edisodeDate.text = dataModelForEpisodes[episodeIndex].airDate
+            } else {
+                episodesCell.episodeName.text = "N/A"
+                episodesCell.episodeNumber.text = "N/A"
+                episodesCell.edisodeDate.text = "N/A"
+            }
             
             return episodesCell
         }
