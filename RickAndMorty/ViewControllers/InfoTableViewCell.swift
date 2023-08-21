@@ -1,6 +1,6 @@
 //
 //  InfoTableViewCell.swift
-//  RickSndMorty
+//  RickAndMorty
 //
 //  Created by Yury on 20/08/2023.
 //
@@ -71,14 +71,14 @@ class InfoTableViewCell: UITableViewCell {
         // MARK: - Add left labels to a cell
         let leftStackView = UIStackView(arrangedSubviews: [leftLabel1, leftLabel2, leftLabel3])
         leftStackView.translatesAutoresizingMaskIntoConstraints = false
-        leftStackView.axis = .vertical // Изменил на вертикальную ориентацию
+        leftStackView.axis = .vertical
         leftStackView.spacing = 20
         contentView.addSubview(leftStackView)
         
         // MARK: - Add right labels to a cell
         let rightStackView = UIStackView(arrangedSubviews: [rightLabel1, rightLabel2, rightLabel3])
         rightStackView.translatesAutoresizingMaskIntoConstraints = false
-        rightStackView.axis = .vertical // Изменил на вертикальную ориентацию
+        rightStackView.axis = .vertical
         rightStackView.spacing = 20
         contentView.addSubview(rightStackView)
         

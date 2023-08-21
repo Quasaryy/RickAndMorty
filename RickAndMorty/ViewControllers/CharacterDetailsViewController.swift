@@ -1,6 +1,6 @@
 //
 //  CharacterDetailsViewController.swift
-//  RickSndMorty
+//  RickAndMorty
 //
 //  Created by Yury on 20/08/2023.
 //
@@ -11,7 +11,9 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
     
     // MARK: - Propertis
     var character: Character!
-    private var dataModel = Location2.shared
+    private var dataModelForLocation = Location2.shared
+    private var dataModelForEpisodes = [Episode]()
+    
     
     
     lazy private var characterNameImage: UIImageView = {
@@ -70,21 +72,28 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
-        getDataFromRemoteServer()
+        
+        getDataFromRemoteServerForLocation()
+        getDataFromRemoteServerForEpisodes()
+        DispatchQueue.main.async {
+            let loader = self.loader()
+            self.stopLoader(loader: loader)
+        }
+        print(dataModelForLocation)
+        
         tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "infoCell")
         tableView.register(OriginTableViewCell.self, forCellReuseIdentifier: "originCell")
+        tableView.register(EpisodesTableViewCell.self, forCellReuseIdentifier: "episodesCell")
         
         view.backgroundColor = .black
         setNeedsStatusBarAppearanceUpdate() // Set the status bar text color to white
@@ -105,7 +114,7 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
     
     // MARK: - TableView
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2 + character.episode.count
+        return character.episode.count + 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,59 +124,68 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
             
-            cell.selectionStyle = .none
-            cell.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
-            cell.leftLabel1.text = "Species:"
-            cell.leftLabel2.text = "Type:"
-            cell.leftLabel3.text = "Gender:"
-            cell.rightLabel1.text = character.species
+            let infoCell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
+            infoCell.selectionStyle = .none
+            infoCell.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
             
-            character.type == "" ? (cell.rightLabel2.text = "None") : (cell.rightLabel2.text = character.type)
+            infoCell.leftLabel1.text = "Species:"
+            infoCell.leftLabel2.text = "Type:"
+            infoCell.leftLabel3.text = "Gender:"
             
-            cell.rightLabel3.text = character.gender
+            infoCell.rightLabel1.text = character.species
+            character.type.isEmpty ? (infoCell.rightLabel2.text = "None") : (infoCell.rightLabel2.text = character.type)
             
-            return cell
+            infoCell.rightLabel3.text = character.gender
+            
+            return infoCell
+            
         } else if indexPath.section == 1 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "originCell", for: indexPath) as! OriginTableViewCell
             
-            cell.selectionStyle = .none
-            cell.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
-            cell.planetImage.image = UIImage(named: "planet")
-            dataModel.name != "" ? (cell.locationName.text = dataModel.name) : (cell.locationName.text = "Unknow")
-            dataModel.type != "" ? (cell.planetName.text = dataModel.type) : (cell.planetName.text = "Unknow")
-               
-                
-                return cell
+            let originCell = tableView.dequeueReusableCell(withIdentifier: "originCell", for: indexPath) as! OriginTableViewCell
+            
+            originCell.selectionStyle = .none
+            originCell.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
+            
+            originCell.planetImage.image = UIImage(named: "planet")
+            originCell.locationName.text = dataModelForLocation.name.isEmpty ? "Unknown" : dataModelForLocation.name
+            originCell.planetName.text = dataModelForLocation.type.isEmpty ? "Unknown" : dataModelForLocation.type
+            
+            return originCell
+            
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
             
-            cell.leftLabel1.text = "asd"
-            cell.leftLabel2.text = "asd"
-            cell.leftLabel3.text = "asd"
+            let episodesCell = tableView.dequeueReusableCell(withIdentifier: "episodesCell", for: indexPath) as! EpisodesTableViewCell
+                
+            episodesCell.selectionStyle = .none
+            episodesCell.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
             
-            cell.rightLabel1.text = "Right Label 1"
-            cell.rightLabel2.text = "Right Label 2"
-            cell.rightLabel3.text = "Right Label 3"
+            let episodeIndex = indexPath.section - 2
+            let episodeString = dataModelForEpisodes[episodeIndex].episode
             
-            return cell
+            episodesCell.episodeName.text = dataModelForEpisodes[episodeIndex].name
+            episodesCell.episodeNumber.text = convertEpisodeString(episodeString)
+            episodesCell.edisodeDate.text = dataModelForEpisodes[episodeIndex].airDate
+            
+            return episodesCell
+        }
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            cell?.contentView.backgroundColor = UIColor(red: 53/255, green: 54/255, blue: 54/255, alpha: 1)
+        }) { (_) in
+            UIView.animate(withDuration: 0.2, animations: {
+                cell?.contentView.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
+            })
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let cell = tableView.cellForRow(at: indexPath)
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                cell?.contentView.backgroundColor = UIColor(red: 53/255, green: 54/255, blue: 54/255, alpha: 1)
-            }) { (_) in
-                UIView.animate(withDuration: 0.2, animations: {
-                    cell?.contentView.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
-                })
-            }
-        }
-
-
+    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
@@ -186,10 +204,9 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
         }
         return 0.1
     }
-
-    
     
 }
+
 
 // MARK: - Private Methods
 extension CharacterDetailsViewController {
@@ -227,7 +244,7 @@ extension CharacterDetailsViewController {
     // Setup header section for text color, font, spacers
     private func setupHederForSection(name: String) -> UIView {
         let headerView = UIView()
-        headerView.backgroundColor = .clear // Transparent background so as not to overlap the cells
+        headerView.backgroundColor = .clear // Transparent background to not overlap the cells
         
         let label = UILabel()
         label.text = name
@@ -247,7 +264,46 @@ extension CharacterDetailsViewController {
     }
     
     // MARK: Network section
-    func getDataFromRemoteServer() {
+    func getDataFromRemoteServerForEpisodes() {
+        var episodesArray = [String]()
+        
+        for url in character.episode {
+            episodesArray.append(url)
+        }
+        for urlEpisode in episodesArray {
+            guard let url = URL(string: urlEpisode) else { return }
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                
+                if let error = error {
+                    print(error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self.alert(title: "Something wrong", message: error.localizedDescription)
+                    }
+                    return
+                }
+                
+                if let response = response {
+                    print(response)
+                }
+                
+                guard let remtoteData = data else { return }
+                do {
+                    let newModel = try JSONDecoder().decode(Episode.self, from: remtoteData)
+                    self.dataModelForEpisodes.append(newModel)
+                    //print(newModel)
+                    
+                } catch let error {
+                    print(error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self.alert(title: "Remote data decoding error", message: "We are working on fixing the bug, please try again later.")
+                    }
+                }
+            }.resume()
+        }
+    }
+    
+    
+    func getDataFromRemoteServerForLocation() {
         guard let url = URL(string: character.origin.url) else { return }
         URLSession.shared.dataTask(with: url) { data, response, error in
             
@@ -265,18 +321,14 @@ extension CharacterDetailsViewController {
             
             guard let remtoteData = data else { return }
             do {
-                self.dataModel = try JSONDecoder().decode(Location2.self, from: remtoteData)
-                //print(self.dataModel)
+                self.dataModelForLocation = try JSONDecoder().decode(Location2.self, from: remtoteData)
+                print(self.dataModelForLocation)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    let loader = self.loader()
-                    self.stopLoader(loader: loader)
                 }
             } catch let error {
                 print(error.localizedDescription)
                 DispatchQueue.main.async {
-                    let loader = self.loader()
-                    self.stopLoader(loader: loader)
                     self.alert(title: "Remote data decoding error", message: "We are working on fixing the bug, please try again later.")
                 }
             }
@@ -324,6 +376,17 @@ extension CharacterDetailsViewController {
         DispatchQueue.main.async {
             loader.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    // MARK: String converter
+    private func convertEpisodeString(_ episodeString: String) -> String {
+        let components = episodeString.components(separatedBy: "E")
+        if components.count == 2 {
+            let season = Int(components[0].dropFirst()) ?? 0
+            let episode = Int(components[1]) ?? 0
+            return "Episode: \(episode), Season: \(season)"
+        }
+        return "Wrong format"
     }
     
 }

@@ -1,6 +1,6 @@
 //
 //  CollectionViewCell.swift
-//  RickSndMorty
+//  RickAndMorty
 //
 //  Created by Yury on 19/08/2023.
 //

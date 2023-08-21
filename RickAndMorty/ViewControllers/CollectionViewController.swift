@@ -1,6 +1,6 @@
 //
 //  CollectionViewController.swift
-//  RickSndMorty
+//  RickAndMorty
 //
 //  Created by Yury on 19/08/2023.
 //
@@ -154,8 +154,6 @@ extension CollectionViewController {
             } catch let error {
                 print(error.localizedDescription)
                 DispatchQueue.main.async {
-                    let loader = self.loader()
-                    self.stopLoader(loader: loader)
                     self.alert(title: "Remote data decoding error", message: "We are working on fixing the bug, please try again later.")
                 }
             }

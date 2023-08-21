@@ -1,6 +1,6 @@
 //
 //  OriginTableViewCell.swift
-//  RickSndMorty
+//  RickAndMorty
 //
 //  Created by Yury on 20/08/2023.
 //
