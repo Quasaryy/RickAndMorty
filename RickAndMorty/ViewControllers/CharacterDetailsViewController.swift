@@ -12,8 +12,7 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
     // MARK: - Propertis
     var character: Character!
     private var dataModelForLocation = Location2.shared
-    private var dataModelForEpisodes = [Episode]()
-    
+    private var dataModelForEpisodes = [Episode.shared]
     
     
     lazy private var characterNameImage: UIImageView = {
@@ -74,7 +73,7 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = false
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -83,13 +82,14 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         
+        
         getDataFromRemoteServerForLocation()
         getDataFromRemoteServerForEpisodes()
         DispatchQueue.main.async {
             let loader = self.loader()
             self.stopLoader(loader: loader)
+            print(self.dataModelForEpisodes)
         }
-        print(dataModelForLocation)
         
         tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "infoCell")
         tableView.register(OriginTableViewCell.self, forCellReuseIdentifier: "originCell")
@@ -160,7 +160,7 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
             episodesCell.selectionStyle = .none
             episodesCell.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
             
-            let episodeIndex = indexPath.section - 2
+            let episodeIndex = indexPath.section - 1
             let episodeString = dataModelForEpisodes[episodeIndex].episode
             
             episodesCell.episodeName.text = dataModelForEpisodes[episodeIndex].name
@@ -264,7 +264,39 @@ extension CharacterDetailsViewController {
     }
     
     // MARK: Network section
-    func getDataFromRemoteServerForEpisodes() {
+    func getDataFromRemoteServerForLocation() {
+        guard let url = URL(string: character.origin.url) else { return }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            if let error = error {
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.alert(title: "Something wrong", message: error.localizedDescription)
+                }
+                return
+            }
+            
+            if let response = response {
+                print(response)
+            }
+            
+            guard let remtoteData = data else { return }
+            do {
+                self.dataModelForLocation = try JSONDecoder().decode(Location2.self, from: remtoteData)
+                print(self.dataModelForLocation)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } catch let error {
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.alert(title: "Remote data decoding error", message: "We are working on fixing the bug, please try again later.")
+                }
+            }
+        }.resume()
+    }
+    
+    private func getDataFromRemoteServerForEpisodes() {
         var episodesArray = [String]()
         
         for url in character.episode {
@@ -300,39 +332,6 @@ extension CharacterDetailsViewController {
                 }
             }.resume()
         }
-    }
-    
-    
-    func getDataFromRemoteServerForLocation() {
-        guard let url = URL(string: character.origin.url) else { return }
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            
-            if let error = error {
-                print(error.localizedDescription)
-                DispatchQueue.main.async {
-                    self.alert(title: "Something wrong", message: error.localizedDescription)
-                }
-                return
-            }
-            
-            if let response = response {
-                print(response)
-            }
-            
-            guard let remtoteData = data else { return }
-            do {
-                self.dataModelForLocation = try JSONDecoder().decode(Location2.self, from: remtoteData)
-                print(self.dataModelForLocation)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } catch let error {
-                print(error.localizedDescription)
-                DispatchQueue.main.async {
-                    self.alert(title: "Remote data decoding error", message: "We are working on fixing the bug, please try again later.")
-                }
-            }
-        }.resume()
     }
     
     // MARK: Alert controller
