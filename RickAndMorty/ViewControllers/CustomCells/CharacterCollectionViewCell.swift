@@ -63,3 +63,25 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     }
     
 }
+
+// MARK: - Methods
+extension CharacterCollectionViewCell {
+
+    // Setup the cell
+    func setupCell(indexPath: IndexPath, dataModel: CharacterResponse) {
+        
+        let character = dataModel.results[indexPath.item]
+        
+        // Loading image (in async mode)
+        if let imageURL = URL(string: character.image) {
+            UtilityManager.shared.loadImageAsync(from: imageURL) { image in
+                DispatchQueue.main.async {
+                    self.characterImageView.image = image
+                }
+            }
+        }
+        
+        charcterName.text = character.name
+    }
+    
+}

@@ -100,3 +100,22 @@ class InfoTableViewCell: UITableViewCell {
     }
 }
 
+
+// MARK: - Methods
+extension InfoTableViewCell {
+    
+    // Setup the cell
+    func setupInfoCell(character: Character) {
+        selectionStyle = .none
+        backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
+        
+        leftLabel1.text = "Species:"
+        leftLabel2.text = "Type:"
+        leftLabel3.text = "Gender:"
+        
+        rightLabel1.text = character.species
+        character.type.isEmpty ? (rightLabel2.text = "None") : (rightLabel2.text = character.type)
+        rightLabel3.text = character.gender
+    }
+}
+

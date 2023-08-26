@@ -73,3 +73,28 @@ class EpisodesTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - Methods
+extension EpisodesTableViewCell {
+    
+    // Setup the call
+    func setupEpisodesCell(dataModel: [Episode], indexPath: IndexPath) {
+        selectionStyle = .none
+        backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
+        
+        let episodeIndex = indexPath.section - 2
+        
+        if episodeIndex >= 0 && episodeIndex < dataModel.count {
+            
+            let episodeString = dataModel[episodeIndex].episode
+            episodeName.text = dataModel[episodeIndex].name
+            episodeNumber.text = UtilityManager.shared.convertEpisodeString(episodeString)
+            edisodeDate.text = dataModel[episodeIndex].airDate
+        } else {
+            episodeName.text = "Loading..."
+            episodeNumber.text = "Loading..."
+            edisodeDate.text = "Loading..."
+        }
+    }
+    
+}
+

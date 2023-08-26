@@ -95,4 +95,19 @@ class OriginTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - Methods
+extension OriginTableViewCell {
+    
+    // Setup the cell
+    func setupInfoCell(dataModel: Location2) {
+        selectionStyle = .none
+        backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
+        
+        planetImage.image = UIImage(named: "planet")
+        locationName.text = dataModel.name.isEmpty ? "Unknown" : dataModel.name
+        planetName.text = dataModel.type.isEmpty ? "Unknown" : dataModel.type
+    }
+    
+}
+
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D212D0BC2A9A2EE000270717 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D212D0BB2A9A2EE000270717 /* NetworkManager.swift */; };
+		D212D0BE2A9A53AF00270717 /* UtilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D212D0BD2A9A53AF00270717 /* UtilityManager.swift */; };
+		D212D0C12A9A7B8D00270717 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D212D0C02A9A7B8D00270717 /* Logger.swift */; };
 		D28E0DE32A90C2D40067D952 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28E0DE22A90C2D40067D952 /* AppDelegate.swift */; };
 		D28E0DE52A90C2D40067D952 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28E0DE42A90C2D40067D952 /* SceneDelegate.swift */; };
 		D28E0DEC2A90C2D50067D952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D28E0DEB2A90C2D50067D952 /* Assets.xcassets */; };
@@ -27,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D212D0BB2A9A2EE000270717 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D212D0BD2A9A53AF00270717 /* UtilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityManager.swift; sourceTree = "<group>"; };
+		D212D0C02A9A7B8D00270717 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D28E0DDF2A90C2D40067D952 /* RickSndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickSndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D28E0DE22A90C2D40067D952 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D28E0DE42A90C2D40067D952 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +65,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D212D0BF2A9A548D00270717 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D212D0BB2A9A2EE000270717 /* NetworkManager.swift */,
+				D212D0BD2A9A53AF00270717 /* UtilityManager.swift */,
+				D212D0C02A9A7B8D00270717 /* Logger.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		D212D0C22A9A7DE600270717 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				D2BBCDB32A90D6C30045D3B8 /* CharacterCollectionViewCell.swift */,
+				D2E0C8D42A9292EE00064E24 /* OriginTableViewCell.swift */,
+				D2E457962A9344DD00F662D1 /* EpisodesTableViewCell.swift */,
+				D2E0C8D22A926F9E00064E24 /* InfoTableViewCell.swift */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
 		D28E0DD62A90C2D40067D952 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +107,7 @@
 			children = (
 				D28E0DE22A90C2D40067D952 /* AppDelegate.swift */,
 				D28E0DE42A90C2D40067D952 /* SceneDelegate.swift */,
+				D212D0BF2A9A548D00270717 /* Managers */,
 				D2BBCDBF2A9146C10045D3B8 /* Fonts */,
 				D2BBCDB82A90E8620045D3B8 /* ViewControllers */,
 				D2BBCDB72A90E84C0045D3B8 /* Models */,
@@ -102,11 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				D2BBCDB12A90D6030045D3B8 /* CollectionViewController.swift */,
-				D2BBCDB32A90D6C30045D3B8 /* CharacterCollectionViewCell.swift */,
 				D2E0C8CE2A92069F00064E24 /* CharacterDetailsViewController.swift */,
-				D2E0C8D42A9292EE00064E24 /* OriginTableViewCell.swift */,
-				D2E457962A9344DD00F662D1 /* EpisodesTableViewCell.swift */,
-				D2E0C8D22A926F9E00064E24 /* InfoTableViewCell.swift */,
+				D212D0C22A9A7DE600270717 /* CustomCells */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -202,12 +227,15 @@
 			files = (
 				D2E0C8CF2A92069F00064E24 /* CharacterDetailsViewController.swift in Sources */,
 				D2BBCDB62A90E8460045D3B8 /* CharctersModel.swift in Sources */,
+				D212D0BC2A9A2EE000270717 /* NetworkManager.swift in Sources */,
 				D2BBCDB22A90D6030045D3B8 /* CollectionViewController.swift in Sources */,
 				D28E0DE32A90C2D40067D952 /* AppDelegate.swift in Sources */,
 				D2E0C8D32A926F9E00064E24 /* InfoTableViewCell.swift in Sources */,
 				D2BBCDB42A90D6C30045D3B8 /* CharacterCollectionViewCell.swift in Sources */,
+				D212D0C12A9A7B8D00270717 /* Logger.swift in Sources */,
 				D2E457972A9344DD00F662D1 /* EpisodesTableViewCell.swift in Sources */,
 				D28E0DE52A90C2D40067D952 /* SceneDelegate.swift in Sources */,
+				D212D0BE2A9A53AF00270717 /* UtilityManager.swift in Sources */,
 				D2E0C8D52A9292EE00064E24 /* OriginTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
