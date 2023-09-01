@@ -33,7 +33,7 @@
 		D212D0BB2A9A2EE000270717 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D212D0BD2A9A53AF00270717 /* UtilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityManager.swift; sourceTree = "<group>"; };
 		D212D0C02A9A7B8D00270717 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		D28E0DDF2A90C2D40067D952 /* RickSndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickSndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D28E0DDF2A90C2D40067D952 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D28E0DE22A90C2D40067D952 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D28E0DE42A90C2D40067D952 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D28E0DEB2A90C2D50067D952 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		D28E0DE02A90C2D40067D952 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D28E0DDF2A90C2D40067D952 /* RickSndMorty.app */,
+				D28E0DDF2A90C2D40067D952 /* RickAndMorty.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,9 +152,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D28E0DDE2A90C2D40067D952 /* RickSndMorty */ = {
+		D28E0DDE2A90C2D40067D952 /* RickAndMorty */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D28E0DF32A90C2D50067D952 /* Build configuration list for PBXNativeTarget "RickSndMorty" */;
+			buildConfigurationList = D28E0DF32A90C2D50067D952 /* Build configuration list for PBXNativeTarget "RickAndMorty" */;
 			buildPhases = (
 				D28E0DDB2A90C2D40067D952 /* Sources */,
 				D28E0DDC2A90C2D40067D952 /* Frameworks */,
@@ -164,9 +164,9 @@
 			);
 			dependencies = (
 			);
-			name = RickSndMorty;
+			name = RickAndMorty;
 			productName = RickSndMorty;
-			productReference = D28E0DDF2A90C2D40067D952 /* RickSndMorty.app */;
+			productReference = D28E0DDF2A90C2D40067D952 /* RickAndMorty.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -197,7 +197,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D28E0DDE2A90C2D40067D952 /* RickSndMorty */,
+				D28E0DDE2A90C2D40067D952 /* RickAndMorty */,
 			);
 		};
 /* End PBXProject section */
@@ -448,7 +448,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D28E0DF32A90C2D50067D952 /* Build configuration list for PBXNativeTarget "RickSndMorty" */ = {
+		D28E0DF32A90C2D50067D952 /* Build configuration list for PBXNativeTarget "RickAndMorty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D28E0DF42A90C2D50067D952 /* Debug */,
