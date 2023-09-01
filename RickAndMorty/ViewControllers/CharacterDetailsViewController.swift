@@ -96,14 +96,12 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
         setNeedsStatusBarAppearanceUpdate() // Set the status bar text color to white
         
         // Load character image
-        if let imageUrl = URL(string: character.image) {
-            URLSession.shared.dataTask(with: imageUrl) { data, _, error in
-                if let data = data, let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.characterNameImage.image = image
-                    }
+        if let imageURL = URL(string: character.image) {
+            UtilityManager.shared.loadImageAsync(from: imageURL) { image in
+                DispatchQueue.main.async {
+                    self.characterNameImage.image = image
                 }
-            }.resume()
+            }
         }
         
         addConstaraints()
