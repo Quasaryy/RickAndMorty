@@ -10,7 +10,7 @@ import UIKit
 
 class NetworkManager {
     
-    //MARK: - Properties
+    // MARK: - Properties
     static let shared = NetworkManager()
     
     // MARK: - Init

@@ -10,15 +10,15 @@ import UIKit
 
 class UtilityManager {
     
-    //MARK: - Properties
+    // MARK: - Properties
     static let shared = UtilityManager()
     
-    //MARK: - Init
+    // MARK: - Init
     private init() {}
     
 }
 
-//MARK: - Methods
+// MARK: - Methods
 extension UtilityManager {
     
     // Converting seasons and episodes to neeed format
