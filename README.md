@@ -11,4 +11,4 @@ Tech stack: Without StoryBoard only code, URLSesson, JSON, MVC, GCD, Figma, UICo
 ![Иллюстрация к проекту](https://github.com/Quasaryy/RickAndMorty/blob/main/3.png)
 
 ## Video
-[![Watch the video](https://img.youtube.com/vi/_ziTdwVoEdg/maxresdefault.jpg)](https://youtube.com/_ziTdwVoEdg)
+[![Watch the video](https://img.youtube.com/vi/_ziTdwVoEdg/maxresdefault.jpg)](https://youtu.be/_ziTdwVoEdg)
