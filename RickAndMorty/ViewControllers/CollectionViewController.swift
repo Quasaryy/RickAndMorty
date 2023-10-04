@@ -17,8 +17,6 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     private let sectionInsets = UIEdgeInsets(top: 15, left: 20, bottom: 10, right: 20)
     private var indexPath: IndexPath?
     
-    
-    
     // MARK: - Initializers
     
     init() {
@@ -68,7 +66,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // Creating and casting a cell as custom cell
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CharacterCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CharacterCollectionViewCell else { return UICollectionViewCell() }
         
         // Configure the cell
         cell.setupCell(indexPath: indexPath, dataModel: dataModel)

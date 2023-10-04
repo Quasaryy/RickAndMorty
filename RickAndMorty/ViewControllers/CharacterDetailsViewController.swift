@@ -166,7 +166,7 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
             return UtilityManager.shared.setupHederForSection(name: "Info")
         } else if section == 1 {
             return UtilityManager.shared.setupHederForSection(name: "Origin")
-        } else if section == 2  {
+        } else if section == 2 {
             return UtilityManager.shared.setupHederForSection(name: "Episodes")
         }
         return nil
