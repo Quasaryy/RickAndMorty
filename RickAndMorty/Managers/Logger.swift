@@ -17,7 +17,6 @@ enum Logger {
 // MARK: - Methods
 extension Logger {
     
-    
     // Method for logging response information
     static func logResponse(_ response: URLResponse) {
         guard isLoggingEnabled else { return }

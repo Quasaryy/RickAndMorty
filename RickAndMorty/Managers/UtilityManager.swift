@@ -51,7 +51,7 @@ extension UtilityManager {
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 0),
             label.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-            label.bottomAnchor.constraint(equalTo: headerView.topAnchor, constant: 35),
+            label.bottomAnchor.constraint(equalTo: headerView.topAnchor, constant: 35)
         ])
         
         return headerView
@@ -69,7 +69,7 @@ extension UtilityManager {
         return alert
     }
     
-    func stopLoader(loader : UIAlertController) {
+    func stopLoader(loader: UIAlertController) {
         DispatchQueue.main.async {
             loader.dismiss(animated: true, completion: nil)
         }

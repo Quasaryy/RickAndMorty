@@ -65,7 +65,6 @@ extension NetworkManager {
         }.resume()
     }
     
-    
     func getDataFromRemoteServerForLocation(character: Character, tableView: UITableView, completion: @escaping (Location2) -> Void) {
         
         let indexPathToUpdate = IndexPath(row: 0, section: 1)
