@@ -72,7 +72,6 @@ class OriginTableViewCell: UITableViewCell {
             containerView.widthAnchor.constraint(equalToConstant: 64),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             
-            
             // Image inside UIView
             planetImage.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             planetImage.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
@@ -87,7 +86,7 @@ class OriginTableViewCell: UITableViewCell {
             // Label for planet name
             planetName.leadingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 16),
             planetName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            planetName.topAnchor.constraint(equalTo: locationName.bottomAnchor, constant: 12),
+            planetName.topAnchor.constraint(equalTo: locationName.bottomAnchor, constant: 12)
         ])
     }
     

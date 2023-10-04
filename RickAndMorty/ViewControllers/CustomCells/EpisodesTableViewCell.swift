@@ -65,7 +65,7 @@ class EpisodesTableViewCell: UITableViewCell {
             // Episode date
             edisodeDate.topAnchor.constraint(equalTo: episodeName.bottomAnchor, constant: 16),
             edisodeDate.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            edisodeDate.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            edisodeDate.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
     }
     

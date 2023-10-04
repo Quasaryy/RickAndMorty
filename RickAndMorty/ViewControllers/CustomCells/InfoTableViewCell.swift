@@ -95,7 +95,7 @@ class InfoTableViewCell: UITableViewCell {
             
             rightStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             rightStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            rightStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            rightStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
     }
     

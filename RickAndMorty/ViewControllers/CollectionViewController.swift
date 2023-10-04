@@ -115,7 +115,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         
         let detailsViewController = CharacterDetailsViewController()
         
-        //Sending character details to CharacterDetailsViewController
+        // Sending character details to CharacterDetailsViewController
         guard let checkedIndexPath = indexPath else { return }
         detailsViewController.character = dataModel.results[checkedIndexPath.item]
         
