@@ -50,6 +50,7 @@ class OriginTableViewCell: UITableViewCell {
     }()
     
     // MARK: - Init
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -59,6 +60,7 @@ class OriginTableViewCell: UITableViewCell {
         contentView.addSubview(planetName)
         
         // MARK: - Constraints
+        
         let containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: 64)
         containerViewHeightConstraint.priority = .defaultHigh
         containerViewHeightConstraint.isActive = true
@@ -89,13 +91,15 @@ class OriginTableViewCell: UITableViewCell {
         ])
     }
     
-    // MARK: Required init
+    // MARK: - Required init
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }
 
 // MARK: - Methods
+
 extension OriginTableViewCell {
     
     // Setup the cell
@@ -109,5 +113,3 @@ extension OriginTableViewCell {
     }
     
 }
-
-

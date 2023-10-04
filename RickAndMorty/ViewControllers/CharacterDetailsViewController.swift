@@ -10,6 +10,7 @@ import UIKit
 class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - Propertis
+    
     var character: Character!
     private var dataModelForLocation = Location2.shared
     private var dataModelForEpisodes = [Episode.shared]
@@ -108,6 +109,7 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     // MARK: - TableView
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return character.episode.count + 2
     }
@@ -145,7 +147,6 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
             
             return episodesCell
         }
-        
     }
     
     
@@ -160,8 +161,6 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
             })
         }
     }
-    
-    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
@@ -183,8 +182,8 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
     
 }
 
-
 // MARK: - Private Methods
+
 extension CharacterDetailsViewController {
     private func addConstaraints() {
         

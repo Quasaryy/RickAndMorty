@@ -65,10 +65,12 @@ class InfoTableViewCell: UITableViewCell {
     }()
     
     // MARK: - Init
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         // MARK: - Add left labels to a cell
+        
         let leftStackView = UIStackView(arrangedSubviews: [leftLabel1, leftLabel2, leftLabel3])
         leftStackView.translatesAutoresizingMaskIntoConstraints = false
         leftStackView.axis = .vertical
@@ -76,6 +78,7 @@ class InfoTableViewCell: UITableViewCell {
         contentView.addSubview(leftStackView)
         
         // MARK: - Add right labels to a cell
+        
         let rightStackView = UIStackView(arrangedSubviews: [rightLabel1, rightLabel2, rightLabel3])
         rightStackView.translatesAutoresizingMaskIntoConstraints = false
         rightStackView.axis = .vertical
@@ -94,14 +97,14 @@ class InfoTableViewCell: UITableViewCell {
         ])
     }
     
-    // MARK: Required init
+    // MARK: - Required init
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-
 // MARK: - Methods
+
 extension InfoTableViewCell {
     
     // Setup the cell
@@ -117,5 +120,5 @@ extension InfoTableViewCell {
         character.type.isEmpty ? (rightLabel2.text = "None") : (rightLabel2.text = character.type)
         rightLabel3.text = character.gender
     }
+    
 }
-

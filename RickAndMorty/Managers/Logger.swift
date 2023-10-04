@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Logger {
+enum Logger {
     
     // MARK: - Properties
     static var isLoggingEnabled = false // Flag to enable/disable logging
@@ -44,4 +44,3 @@ extension Logger {
         print(message)
     }
 }
-

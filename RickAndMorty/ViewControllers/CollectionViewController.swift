@@ -10,6 +10,7 @@ import UIKit
 class CollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Properties
+    
     private let reuseIdentifier = "Cell"
     private var dataModel = CharacterResponse.shared
     private let cellsInRow: CGFloat = 2
@@ -19,6 +20,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     
     
     // MARK: - Initializers
+    
     init() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -30,9 +32,10 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     }
     
     // MARK: - ViewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         // Register custom UICollectionViewCell class
         collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
@@ -53,6 +56,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     }
     
     // MARK: UICollectionViewDataSource
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -73,6 +77,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     }
     
     // MARK: UICollectionViewDelegate
+    
     // Setting cell size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -107,8 +112,9 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     }
     
     // MARK: - Navigation
+    
     func showDetailViewController(forCharacter character: Character) {
-
+        
         let detailsViewController = CharacterDetailsViewController()
         
         //Sending character details to CharacterDetailsViewController

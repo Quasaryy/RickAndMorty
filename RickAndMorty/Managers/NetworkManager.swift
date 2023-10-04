@@ -5,20 +5,23 @@
 //  Created by Yury on 26/08/2023.
 //
 
-import Foundation
 import UIKit
 
 class NetworkManager {
     
     // MARK: - Properties
+    
     static let shared = NetworkManager()
     
     // MARK: - Init
+    
+    // Private initializer to prevent new instances of the class from being created
     private init() {}
     
 }
 
 // MARK: - Methods
+
 extension NetworkManager {
     
     func getDataFromRemoteServer(collectionView: UICollectionView, from viewController: UIViewController, completion: @escaping (CharacterResponse) -> Void) {
@@ -28,9 +31,9 @@ extension NetworkManager {
         DispatchQueue.main.async {
             viewController.present(loader, animated: true, completion: nil)
         }
-
+        
         guard let url = URL(string: "https://rickandmortyapi.com/api/character") else { return }
-
+        
         URLSession.shared.dataTask(with: url) { data, response, error in
             // Hide the loader after the data is loaded and the collection is reloaded
             defer {
@@ -38,18 +41,18 @@ extension NetworkManager {
                     UtilityManager.shared.stopLoader(loader: loader)
                 }
             }
-
+            
             if let error = error {
                 Logger.logErrorDescription(error)
                 return
             }
-
+            
             if let response = response {
                 Logger.logResponse(response)
             }
-
+            
             guard let remoteData = data else { return }
-
+            
             do {
                 let dataModel = try JSONDecoder().decode(CharacterResponse.self, from: remoteData)
                 DispatchQueue.main.async {
@@ -61,7 +64,7 @@ extension NetworkManager {
             }
         }.resume()
     }
-
+    
     
     func getDataFromRemoteServerForLocation(character: Character, tableView: UITableView, completion: @escaping (Location2) -> Void) {
         
@@ -147,7 +150,5 @@ extension NetworkManager {
             tableView.reloadData()
         }
     }
-
+    
 }
-
-

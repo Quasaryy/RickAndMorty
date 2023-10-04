@@ -10,6 +10,7 @@ import UIKit
 class CharacterCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
+    
     lazy var characterImageView: UIImageView = {
         characterImageView = UIImageView()
         characterImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,6 +48,7 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     }()
     
     // MARK: - Initializer
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -58,6 +60,8 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         self.contentView.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
     }
     
+    // MARK: - Required init
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -65,8 +69,9 @@ class CharacterCollectionViewCell: UICollectionViewCell {
 }
 
 // MARK: - Methods
-extension CharacterCollectionViewCell {
 
+extension CharacterCollectionViewCell {
+    
     // Setup the cell
     func setupCell(indexPath: IndexPath, dataModel: CharacterResponse) {
         
