@@ -24,6 +24,7 @@ class NetworkManager {
 
 extension NetworkManager {
     
+    // MARK: Main scren
     func getDataFromRemoteServer(collectionView: UICollectionView, from viewController: UIViewController, completion: @escaping (CharacterResponse) -> Void) {
         
         // Create and show loader
@@ -65,6 +66,7 @@ extension NetworkManager {
         }.resume()
     }
     
+    // MARK: Locations
     func getDataFromRemoteServerForLocation(character: Character, tableView: UITableView, completion: @escaping (Location2) -> Void) {
         
         let indexPathToUpdate = IndexPath(row: 0, section: 1)
@@ -95,28 +97,20 @@ extension NetworkManager {
         }.resume()
     }
     
+    // MARK: Episodes
     func getDataFromRemoteServerForEpisodes(character: Character, tableView: UITableView, from viewController: UIViewController, completion: @escaping ([Episode]) -> Void) {
-        
         // Create and show loader
         let loader = UtilityManager.shared.createLoaderViewController()
-        DispatchQueue.main.async {
-            viewController.present(loader, animated: true, completion: nil)
-        }
+        viewController.present(loader, animated: true, completion: nil)
         
-        var episodesArray = [String]()
-        
-        for url in character.episode {
-            episodesArray.append(url)
-        }
+        let episodesArray = character.episode.compactMap { URL(string: $0) }
         
         var dataModelForEpisodes = [Episode]()
         let dispatchGroup = DispatchGroup()
         
-        for urlEpisode in episodesArray {
-            guard let url = URL(string: urlEpisode) else { continue }
-            
+        for episodeURL in episodesArray {
             dispatchGroup.enter()
-            URLSession.shared.dataTask(with: url) { data, response, error in
+            URLSession.shared.dataTask(with: episodeURL) { data, response, error in
                 defer {
                     dispatchGroup.leave()
                 }
@@ -135,7 +129,6 @@ extension NetworkManager {
                 do {
                     let newModel = try JSONDecoder().decode(Episode.self, from: remoteData)
                     dataModelForEpisodes.append(newModel)
-                    
                 } catch let error {
                     Logger.logErrorDescription(error)
                     return
