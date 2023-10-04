@@ -85,7 +85,7 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
         NetworkManager.shared.getDataFromRemoteServerForLocation(character: character, tableView: tableView) { locationData in
             self.dataModelForLocation = locationData
         }
-        NetworkManager.shared.getDataFromRemoteServerForEpisodes(character: character, tableView: tableView,from: self) { episodesData in
+        NetworkManager.shared.getDataFromRemoteServerForEpisodes(character: character, tableView: tableView, from: self) { episodesData in
             self.dataModelForEpisodes = episodesData
         }
         
@@ -122,7 +122,7 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
         
         if indexPath.section == 0 {
             
-            let infoCell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
+            guard let infoCell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as? InfoTableViewCell else { return UITableViewCell() }
             
             // Configure the cell
             infoCell.setupInfoCell(character: character)
@@ -131,7 +131,7 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
             
         } else if indexPath.section == 1 {
             
-            let originCell = tableView.dequeueReusableCell(withIdentifier: "originCell", for: indexPath) as! OriginTableViewCell
+            guard let originCell = tableView.dequeueReusableCell(withIdentifier: "originCell", for: indexPath) as? OriginTableViewCell else { return UITableViewCell() }
             
             // Configure the cell
             originCell.setupInfoCell(dataModel: dataModelForLocation)
@@ -140,7 +140,7 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
             
         } else {
             
-            let episodesCell = tableView.dequeueReusableCell(withIdentifier: "episodesCell", for: indexPath) as! EpisodesTableViewCell
+            guard let episodesCell = tableView.dequeueReusableCell(withIdentifier: "episodesCell", for: indexPath) as? EpisodesTableViewCell else { return UITableViewCell() }
             
             // Configure the cell
             episodesCell.setupEpisodesCell(dataModel: dataModelForEpisodes, indexPath: indexPath)
@@ -149,13 +149,12 @@ class CharacterDetailsViewController: UIViewController, UITableViewDelegate, UIT
         }
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         
         UIView.animate(withDuration: 0.2, animations: {
             cell?.contentView.backgroundColor = UIColor(red: 53/255, green: 54/255, blue: 54/255, alpha: 1)
-        }) { (_) in
+        }) { (firstCompletion) in
             UIView.animate(withDuration: 0.2, animations: {
                 cell?.contentView.backgroundColor = UIColor(red: 38/255, green: 42/255, blue: 56/255, alpha: 1)
             })
