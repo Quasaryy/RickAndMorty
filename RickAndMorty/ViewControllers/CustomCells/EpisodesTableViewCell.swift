@@ -11,6 +11,8 @@ class EpisodesTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
+    let loading = "Loading..."
+    
     // MARK: Episode name
     let episodeName: UILabel = {
         let episodeName = UILabel()
@@ -91,11 +93,10 @@ extension EpisodesTableViewCell {
             episodeNumber.text = UtilityManager.shared.convertEpisodeString(episodeString)
             edisodeDate.text = dataModel[episodeIndex].airDate
         } else {
-            episodeName.text = "Loading..."
-            episodeNumber.text = "Loading..."
-            edisodeDate.text = "Loading..."
+            episodeName.text = loading
+            episodeNumber.text = loading
+            edisodeDate.text = loading
         }
     }
     
 }
-

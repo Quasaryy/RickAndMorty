@@ -11,55 +11,57 @@ class InfoTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    // MARK: Right lables
-    let leftLabel1: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(red: 196/255, green: 201/255, blue: 206/255, alpha: 1)
-        label.font = UIFont(name: "Gilroy-Medium", size: 16)
-        return label
-    }()
-    
-    let leftLabel2: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(red: 196/255, green: 201/255, blue: 206/255, alpha: 1)
-        label.font = UIFont(name: "Gilroy-Medium", size: 16)
-        return label
-    }()
-    
-    let leftLabel3: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(red: 196/255, green: 201/255, blue: 206/255, alpha: 1)
-        label.font = UIFont(name: "Gilroy-Medium", size: 16)
-        return label
-    }()
+    let fontGilroyMedium = "Gilroy-Medium"
     
     // MARK: Right lables
-    let rightLabel1: UILabel = {
+    lazy var leftLabel1: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor(red: 196/255, green: 201/255, blue: 206/255, alpha: 1)
+        label.font = UIFont(name: fontGilroyMedium, size: 16)
+        return label
+    }()
+    
+    lazy var leftLabel2: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor(red: 196/255, green: 201/255, blue: 206/255, alpha: 1)
+        label.font = UIFont(name: fontGilroyMedium, size: 16)
+        return label
+    }()
+    
+    lazy var leftLabel3: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor(red: 196/255, green: 201/255, blue: 206/255, alpha: 1)
+        label.font = UIFont(name: fontGilroyMedium, size: 16)
+        return label
+    }()
+    
+    // MARK: Right lables
+    lazy var rightLabel1: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
-        label.font = UIFont(name: "Gilroy-Medium", size: 16)
+        label.font = UIFont(name: fontGilroyMedium, size: 16)
         label.textAlignment = .right
         return label
     }()
     
-    let rightLabel2: UILabel = {
+    lazy var rightLabel2: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
-        label.font = UIFont(name: "Gilroy-Medium", size: 16)
+        label.font = UIFont(name: fontGilroyMedium, size: 16)
         label.textAlignment = .right
         return label
     }()
     
-    let rightLabel3: UILabel = {
+    lazy var rightLabel3: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
-        label.font = UIFont(name: "Gilroy-Medium", size: 16)
+        label.font = UIFont(name: fontGilroyMedium, size: 16)
         label.textAlignment = .right
         return label
     }()
